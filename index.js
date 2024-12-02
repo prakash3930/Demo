@@ -11,7 +11,11 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const puppeteerItem = async (url) => {
   try {
     console.log(url);
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({
+      headless: false,
+      executablePath: "/usr/bin/google-chrome", // সঠিক path
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
     const page = await browser.newPage();
 
     // ওয়েবপেজে যাওয়ার জন্য
